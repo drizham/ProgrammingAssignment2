@@ -1,7 +1,16 @@
-## Put comments here that give an overall description of what your
-## functions do
+# cachematrix.R implements accepts a matrix input and creates a 
+# special matrix object that is able to cache its own inverse
+# example usage:
+# 	source("cachematrix.R")
+#	m0 <- matrix(c(1, 4, 9, 16), 2,2)	# create matrix
+#	m1 <- makeCacheMatrix(m0)			# create 'special' matrix
+#	cacheSolve(m2)			# calculate inverse of matrix
+#	cacheSolve(m2)			# calling cacheSolve again retrieves previously
+#							# calculated inverse
 
-## Write a short comment describing this function
+
+# makeCacheMatrix accepts a matrix and creates an object that
+# can cache its' inverse. i.e. save its own inverse itself
 
 makeCacheMatrix <- function(x = numeric()) {
 	m <- NULL
@@ -17,8 +26,9 @@ makeCacheMatrix <- function(x = numeric()) {
 	getinverse = getinverse)
 }
 
-
-## Write a short comment describing this function
+# cacheSolve returns the inverse of a cacheMatrix object
+# if called for the first time it calculates and stores the inverse
+# if called after that it returns the previously calculated & stored inverse
 
 cacheSolve <- function(x, ...) {
 	m <- x$getinverse()
